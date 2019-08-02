@@ -2,16 +2,16 @@
 /**
  * WC Ajax Active Filters
  */
-if (!class_exists('WCAPF_Active_Filters_Widget')) {
-	class WCAPF_Active_Filters_Widget extends WP_Widget {
+if (!class_exists('DGC_Active_Filters_Widget')) {
+	class DGC_Active_Filters_Widget extends WP_Widget {
 		/**
 		 * Register widget with WordPress.
 		 */
 		function __construct() {
 			parent::__construct(
-				'wcapf-active-filters', // Base ID
-				__('WC Ajax Active Filters', 'wcapf'), // Name
-				array('description' => __('Shows active filters so users can see and deactivate them.', 'wcapf')) // Args
+				'dgc-active-filters', // Base ID
+				__('WC Ajax Active Filters', 'textdomain'), // Name
+				array('description' => __('Shows active filters so users can see and deactivate them.', 'textdomain')) // Args
 			);
 		}
 
@@ -29,19 +29,19 @@ if (!class_exists('WCAPF_Active_Filters_Widget')) {
 			}
 			
 			// enqueue necessary scripts
-			wp_enqueue_style('wcapf-style');
+			wp_enqueue_style('dgc-style');
 			wp_enqueue_style('font-awesome');
-			wp_enqueue_script('wcapf-script');
+			wp_enqueue_script('dgc-script');
 			
 			global $wcapf;
-			$active_filters = $wcapf->getChosenFilters();
+			$active_filters = $dgc->getChosenFilters();
 			$active_filters = $active_filters['active_filters'];
 			$found = false;
 			$html = '';
 
 			if (sizeof($active_filters) > 0) {
 				$found = true;
-				$html .= '<div class="wcapf-active-filters">';
+				$html .= '<div class="dgc-active-filters">';
 
 					foreach ($active_filters as $key => $active_filter) {
 						if ($key === 'term') {
@@ -53,19 +53,19 @@ if (!class_exists('WCAPF_Active_Filters_Widget')) {
 						}
 
 						if ($key === 'keyword') {
-							$html .= '<a href="javascript:void(0)" data-key="keyword">' . __('Search For: ', 'wcapf') . $active_filter . '</a>';
+							$html .= '<a href="javascript:void(0)" data-key="keyword">' . __('Search For: ', 'textdomain') . $active_filter . '</a>';
 						}
 
 						if ($key === 'orderby') {
-							$html .= '<a href="javascript:void(0)" data-key="orderby">' . __('Orderby: ', 'wcapf') . $active_filter . '</a>';
+							$html .= '<a href="javascript:void(0)" data-key="orderby">' . __('Orderby: ', 'textdomain') . $active_filter . '</a>';
 						}
 
 						if ($key === 'min_price') {
-							$html .= '<a href="javascript:void(0)" data-key="min-price">' . __('Min Price: ', 'wcapf') . $active_filter . '</a>';
+							$html .= '<a href="javascript:void(0)" data-key="min-price">' . __('Min Price: ', 'textdomain') . $active_filter . '</a>';
 						}
 
 						if ($key === 'max_price') {
-							$html .= '<a href="javascript:void(0)" data-key="max-price">' . __('Max Price: ', 'wcapf') . $active_filter . '</a>';
+							$html .= '<a href="javascript:void(0)" data-key="max-price">' . __('Max Price: ', 'textdomain') . $active_filter . '</a>';
 						}
 
 					}
@@ -104,9 +104,9 @@ if (!class_exists('WCAPF_Active_Filters_Widget')) {
 			// http://wordpress.stackexchange.com/questions/18942/add-class-to-before-widget-from-within-a-custom-widget
 
 			if ($found === false) {
-				$widget_class = 'wcapf-widget-hidden woocommerce wcapf-ajax-term-filter';
+				$widget_class = 'dgc-widget-hidden woocommerce dgc-ajax-term-filter';
 			} else {
-				$widget_class = 'woocommerce wcapf-ajax-term-filter';
+				$widget_class = 'woocommerce dgc-ajax-term-filter';
 			}
 
 			// no class found, so add it
@@ -139,11 +139,11 @@ if (!class_exists('WCAPF_Active_Filters_Widget')) {
 		public function form($instance) {
 			?>
 			<p>
-				<label for="<?php echo $this->get_field_id('title'); ?>"><?php printf(__('Title:', 'wcapf')); ?></label>
+				<label for="<?php echo $this->get_field_id('title'); ?>"><?php printf(__('Title:', 'textdomain')); ?></label>
 				<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo (!empty($instance['title']) ? esc_attr($instance['title']) : ''); ?>">
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id('button_text'); ?>"><?php printf(__('Button Text:', 'wcapf')); ?></label>
+				<label for="<?php echo $this->get_field_id('button_text'); ?>"><?php printf(__('Button Text:', 'textdomain')); ?></label>
 				<input class="widefat" id="<?php echo $this->get_field_id('button_text'); ?>" name="<?php echo $this->get_field_name( 'button_text' ); ?>" type="text" value="<?php echo (!empty($instance['button_text']) ? esc_attr($instance['button_text']) : ''); ?>">
 			</p>
 			<?php
@@ -169,9 +169,9 @@ if (!class_exists('WCAPF_Active_Filters_Widget')) {
 }
 
 // register widget
-if (!function_exists('wcapf_register_active_filters_widget')) {
-	function wcapf_register_active_filters_widget() {
-		register_widget('WCAPF_Active_Filters_Widget');
+if (!function_exists('dgc_register_active_filters_widget')) {
+	function dgc_register_active_filters_widget() {
+		register_widget('DGC_Active_Filters_Widget');
 	}
-	add_action('widgets_init', 'wcapf_register_active_filters_widget');
+	add_action('widgets_init', 'dgc_register_active_filters_widget');
 }

@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name: WC Ajax Product Filter
+ * Plugin Name: DGC WooCommerce Plus
  * Description: A plugin to filter woocommerce products with AJAX request.
- * Version: 2.0.3
- * Author: Shamim Al Mamun
- * Author URI: https://github.com/shamimmoeen
- * Text Domain: wcapf
+ * Version: 1.0.0
+ * Author: dgc.network
+ * Author URI: https://github.com/dgc.network
+ * Text Domain: textdomain
  * Domain Path: /languages
  *
  * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
@@ -16,8 +16,8 @@
  * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @since     1.0
- * @copyright Copyright (c) 2015, Shamim Al Mamun
- * @author    Shamim Al Mamun
+ * @copyright Copyright (c) 2019, dgc.network
+ * @author    dgc.network
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
@@ -27,17 +27,17 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * WCAPF main class
+ * DGC_Woocommerce_Plus main class
  */
-if (!class_exists('WCAPF')) {
-	class WCAPF
+if (!class_exists('DGC_Woocommerce_Plus')) {
+	class DGC_Woocommerce_Plus
 	{
 		/**
 		 * Plugin version, used for cache-busting of style and script file references.
 		 *
 		 * @var string
 		 */
-		public $version = '2.0.3';
+		public $version = '1.0.0';
 
 		/**
 		 * Unique identifier for the plugin.
@@ -51,7 +51,7 @@ if (!class_exists('WCAPF')) {
 		/**
 		 * A reference to an instance of this class.
 		 *
-		 * @var WCAPF
+		 * @var DGC_Woocommerce_Plus
 		 */
 		private static $_instance = null;
 
@@ -66,12 +66,12 @@ if (!class_exists('WCAPF')) {
 		/**
 		 * Returns an instance of this class.
 		 *
-		 * @return WCAPF
+		 * @return DGC_Woocommerce_Plus
 		 */
 		public static function instance()
 		{
 			if (!isset(self::$_instance)) {
-				self::$_instance = new WCAPF();
+				self::$_instance = new DGC_Woocommerce_Plus();
 			}
 
 			return self::$_instance;
@@ -82,7 +82,7 @@ if (!class_exists('WCAPF')) {
 		 */
 		public function init()
 		{
-			$this->plugin_slug = 'wcapf';
+			$this->plugin_slug = 'dgc-woocommerce-plus';
 
 			// Grab the translation for the plugin.
 			add_action('init', array($this, 'loadPluginTextdomain'));
@@ -115,10 +115,10 @@ if (!class_exists('WCAPF')) {
 		 */
 		public function defineConstants()
 		{
-			$this->define('WCAPF_LOCALE', $this->plugin_slug);
-			$this->define('WCAPF_PATH', $this->pluginPath());
-			$this->define('WCAPF_ASSETS_PATH', $this->assetsPath());
-			$this->define('WCAPF_CACHE_TIME', 60*60*12);
+			$this->define('DGC_LOCALE', $this->plugin_slug);
+			$this->define('DGC_PATH', $this->pluginPath());
+			$this->define('DGC_ASSETS_PATH', $this->assetsPath());
+			$this->define('DGC_CACHE_TIME', 60*60*12);
 		}
 
 		/**
@@ -155,33 +155,33 @@ if (!class_exists('WCAPF')) {
 		 */
 		public function frontendScripts()
 		{
-			$settings = get_option('wcapf_settings');
+			$settings = get_option('dgc_settings');
 
-			wp_register_style('wcapf-style', WCAPF_ASSETS_PATH . 'css/wcapf-styles.css');
+			wp_register_style('dgc-style', DGC_ASSETS_PATH . 'css/dgc-styles.css');
 
 			if (key_exists('enable_font_awesome', $settings) && $settings['enable_font_awesome']) {
-				wp_register_style('font-awesome', WCAPF_ASSETS_PATH . 'css/font-awesome.min.css');
+				wp_register_style('font-awesome', DGC_ASSETS_PATH . 'css/font-awesome.min.css');
 			}
 
-			wp_register_script('wcapf-script', WCAPF_ASSETS_PATH . 'js/scripts.js', array('jquery'), '20120206', true);
-			wp_localize_script('wcapf-script', 'wcapf_price_filter_params', array(
+			wp_register_script('dgc-script', DGC_ASSETS_PATH . 'js/scripts.js', array('jquery'), '20120206', true);
+			wp_localize_script('dgc-script', 'dgc_price_filter_params', array(
 				'currency_symbol' => get_woocommerce_currency_symbol(),
 				'currency_pos'    => get_option('woocommerce_currency_pos')
 			));
 
 			if ($settings) {
-				wp_localize_script('wcapf-script', 'wcapf_params', $settings);
+				wp_localize_script('dgc-script', 'dgc_params', $settings);
 			}
 
-			wp_register_style('wcapf-ion-rangeslider-base-style', WCAPF_ASSETS_PATH . 'node_modules/ion-rangeslider/css/ion.rangeSlider.css');
-			wp_register_style('wcapf-ion-rangeslider-skin-style', WCAPF_ASSETS_PATH . 'node_modules/ion-rangeslider/css/ion.rangeSlider.skinHTML5.css');
-			wp_register_script('wcapf-ion-rangeslider-script', WCAPF_ASSETS_PATH . 'node_modules/ion-rangeslider/js/ion.rangeSlider.min.js', array ('jquery'), '1.0', true);
+			wp_register_style('dgc-ion-rangeslider-base-style', DGC_ASSETS_PATH . 'node_modules/ion-rangeslider/css/ion.rangeSlider.css');
+			wp_register_style('dgc-ion-rangeslider-skin-style', DGC_ASSETS_PATH . 'node_modules/ion-rangeslider/css/ion.rangeSlider.skinHTML5.css');
+			wp_register_script('dgc-ion-rangeslider-script', DGC_ASSETS_PATH . 'node_modules/ion-rangeslider/js/ion.rangeSlider.min.js', array ('jquery'), '1.0', true);
 
-			wp_register_script('wcapf-price-filter-script', WCAPF_ASSETS_PATH . 'js/price-filter.js', array ('jquery'), '1.0', true);
-			wp_register_script('wcapf-dimensions-filter-script', WCAPF_ASSETS_PATH . 'js/dimensions-filter.js', array ('jquery'), '1.0', true);
+			wp_register_script('dgc-price-filter-script', DGC_ASSETS_PATH . 'js/price-filter.js', array ('jquery'), '1.0', true);
+			wp_register_script('dgc-dimensions-filter-script', DGC_ASSETS_PATH . 'js/dimensions-filter.js', array ('jquery'), '1.0', true);
 
-			wp_register_style('wcapf-select2', WCAPF_ASSETS_PATH . 'css/select2.css');
-			wp_register_script('wcapf-select2', WCAPF_ASSETS_PATH . 'js/select2.min.js', array ('jquery'), '1.0', true);
+			wp_register_style('dgc-select2', DGC_ASSETS_PATH . 'css/select2.css');
+			wp_register_script('dgc-select2', DGC_ASSETS_PATH . 'js/select2.min.js', array ('jquery'), '1.0', true);
 		}
 
 		/**
@@ -199,7 +199,7 @@ if (!class_exists('WCAPF')) {
 		 */
 		public function adminMenu()
 		{
-			add_options_page(__('WC Ajax Product Filter', 'wcapf'), __('WC Ajax Product Filter', 'wcapf'), 'manage_options', 'wcapf-settings', array($this, 'settingsPage'));
+			add_options_page(__('WC Ajax Product Filter', 'textdomain'), __('WC Ajax Product Filter', 'textdomain'), 'manage_options', 'dgc-settings', array($this, 'settingsPage'));
 		}
 
 		/**
@@ -218,8 +218,8 @@ if (!class_exists('WCAPF')) {
 		public function defaultSettings()
 		{
 			return array(
-				'shop_loop_container'  => '.wcapf-before-products',
-				'not_found_container'  => '.wcapf-before-products',
+				'shop_loop_container'  => '.dgc-before-products',
+				'not_found_container'  => '.dgc-before-products',
 				'pagination_container' => '.woocommerce-pagination',
 				'overlay_bg_color'     => '#fff',
 				'sorting_control'      => '1',
@@ -236,7 +236,7 @@ if (!class_exists('WCAPF')) {
 		 */
 		public function registerSettings()
 		{
-			register_setting('wcapf_settings', 'wcapf_settings', array($this, 'validateSettings'));
+			register_setting('dgc_settings', 'dgc_settings', array($this, 'validateSettings'));
 		}
 
 		/**
@@ -244,10 +244,10 @@ if (!class_exists('WCAPF')) {
 		 */
 		public function saveDefultSettings()
 		{
-			if (!get_option('wcapf_settings')) {
+			if (!get_option('dgc_settings')) {
 				// check if filter is applied
-				$settings = apply_filters('wcapf_settings', $this->defaultSettings());
-				update_option('wcapf_settings', $settings);
+				$settings = apply_filters('dgc_settings', $this->defaultSettings());
+				update_option('dgc_settings', $settings);
 			}
 		}
 
@@ -259,13 +259,13 @@ if (!class_exists('WCAPF')) {
 		 */
 		public function validateSettings($input)
 		{
-			if (has_filter('wcapf_settings')) {
-				$input = apply_filters('wcapf_settings', $input);
+			if (has_filter('dgc_settings')) {
+				$input = apply_filters('dgc_settings', $input);
 			}
 
 			if (isset($input['clear_transients']) && $input['clear_transients'] == '1' ) {
 				// clear transient
-				wcapf_clear_transients();
+				dgc_clear_transients();
 			}
 
 			return $input;
@@ -321,8 +321,8 @@ if (!class_exists('WCAPF')) {
                     );
 
                     foreach ($terms as $term_id) {
-                        $ancestors = wcapf_get_term_ancestors($term_id, $taxonomy);
-                        $term_data = wcapf_get_term_data($term_id, $taxonomy);
+                        $ancestors = dgc_get_term_ancestors($term_id, $taxonomy);
+                        $term_data = dgc_get_term_data($term_id, $taxonomy);
                         $term_ancestors[$key][] = $ancestors;
                         $active_filters['term'][$key][$term_id] = $term_data->name;
                     }
@@ -351,8 +351,8 @@ if (!class_exists('WCAPF')) {
 					);
 
 					foreach ($terms as $term_id) {
-						$ancestors = wcapf_get_term_ancestors($term_id, $taxonomy);
-						$term_data = wcapf_get_term_data($term_id, $taxonomy);
+						$ancestors = dgc_get_term_ancestors($term_id, $taxonomy);
+						$term_data = dgc_get_term_data($term_id, $taxonomy);
 						$term_ancestors[$key][] = $ancestors;
 						$active_filters['term'][$key][$term_id] = $term_data->name;
 					}
@@ -415,12 +415,12 @@ if (!class_exists('WCAPF')) {
 								)
 							);
 
-                            // сложение или пересечение массивов продуктов для каждого термина поочередно
+                            // Addition or intersection of product arrays for each term in turn
 							if (!is_wp_error($posts)) {
 								if (sizeof($matched_products_from_attribute) > 0 || $filtered) {
 									$matched_products_from_attribute = ($data['query_type'] === 'or') ? array_merge($posts, $matched_products_from_attribute) : array_intersect($posts, $matched_products_from_attribute);
 								} else {
-									$matched_products_from_attribute = $posts; // первая итерация
+									$matched_products_from_attribute = $posts; // first iteration
 								}
 
 								$filtered = true;
@@ -428,11 +428,11 @@ if (!class_exists('WCAPF')) {
 						}
 					}
 
-                    // пересечение массивов продуктов для каждого атрибута поочередно
+                    // Intersection of product arrays for each attribute in turn
 					if (sizeof($matched_products) > 0 || $filtered_attribute === true) {
 						$matched_products = array_intersect($matched_products_from_attribute, $matched_products);
 					} else {
-                        $matched_products = $matched_products_from_attribute; // первая итерация
+                        $matched_products = $matched_products_from_attribute; // first iteration
 					}
 
 					$filtered_attribute = true;
@@ -621,11 +621,11 @@ if (!class_exists('WCAPF')) {
  				);
 
  				// get unfiltered products using transients
- 				$transient_name = 'wcapf_unfiltered_product_ids';
+ 				$transient_name = 'dgc_unfiltered_product_ids';
 
  				if (false === ($unfiltered_product_ids = get_transient($transient_name))) {
  					$unfiltered_product_ids = get_posts($args);
- 					set_transient($transient_name, $unfiltered_product_ids, wcapf_transient_lifespan());
+ 					set_transient($transient_name, $unfiltered_product_ids, dgc_transient_lifespan());
  				}
 
  				return $unfiltered_product_ids;
@@ -780,11 +780,11 @@ if (!class_exists('WCAPF')) {
 			}
 
 			// get unfiltered products range using transients
-			$transient_name = 'wcapf_unfiltered_product' . $field . '_range';
+			$transient_name = 'dgc_unfiltered_product' . $field . '_range';
 
 			if (false === ($unfiltered_products_range = get_transient($transient_name))) {
 				$unfiltered_products_range = $this->findMetaRange($field, $products);
-				set_transient($transient_name, $unfiltered_products_range, wcapf_transient_lifespan());
+				set_transient($transient_name, $unfiltered_products_range, dgc_transient_lifespan());
 			}
 
 			return $unfiltered_products_range;
@@ -912,7 +912,7 @@ if (!class_exists('WCAPF')) {
 		 */
 		public static function beforeProductsHolder()
 		{
-			echo '<div class="wcapf-before-products">';
+			echo '<div class="dgc-before-products">';
 		}
 
 		/**
@@ -935,7 +935,7 @@ if (!class_exists('WCAPF')) {
 		 */
 		public static function beforeNoProducts($template_name = '', $template_path = '', $located = '') {
 		    if ($template_name == 'loop/no-products-found.php') {
-		        echo '<div class="wcapf-before-products">';
+		        echo '<div class="dgc-before-products">';
 		    }
 		}
 
@@ -971,7 +971,7 @@ if (!class_exists('WCAPF')) {
 		 */
 		public function loadPluginTextdomain()
 		{
-			load_plugin_textdomain('wcapf', FALSE, basename(dirname(__FILE__)) . '/languages/');
+			load_plugin_textdomain('textdomain', FALSE, basename(dirname(__FILE__)) . '/languages/');
 		}
 
 		/**
@@ -1000,7 +1000,7 @@ if (!class_exists('WCAPF')) {
 		public function needWoocommerce()
 		{
 			echo '<div class="error">';
-			echo '<p>' . __('WC Ajax Product Filter needs WooCommerce plguin to work.', 'wcapf') . '</p>';
+			echo '<p>' . __('WC Ajax Product Filter needs WooCommerce plguin to work.', 'textdomain') . '</p>';
 			echo '</div>';
 		}
 
@@ -1010,7 +1010,7 @@ if (!class_exists('WCAPF')) {
 		public function updateWoocommerce()
 		{
 			echo '<div class="error">';
-			echo '<p>' . __('To use WC Ajax Product Filter update your WooCommerce plugin.', 'wcapf') . '</p>';
+			echo '<p>' . __('To use WC Ajax Product Filter update your WooCommerce plugin.', 'textdomain') . '</p>';
 			echo '</div>';
 		}
 
@@ -1022,7 +1022,7 @@ if (!class_exists('WCAPF')) {
 		 */
 		public function pluginActionLinks($links)
 		{
-			$links[] = '<a href="' . admin_url('options-general.php?page=wcapf-settings') . '">' . __('Settings', 'wcapf') . '</a>';
+			$links[] = '<a href="' . admin_url('options-general.php?page=dgc-settings') . '">' . __('Settings', 'textdomain') . '</a>';
 			return $links;
 		}
 	}
@@ -1031,4 +1031,4 @@ if (!class_exists('WCAPF')) {
 /**
  * Instantiate this class globally.
  */
-$GLOBALS['wcapf'] = WCAPF::instance();
+$GLOBALS['dgc-woocommerce-plus'] = DGC_Woocommerce_Plus::instance();

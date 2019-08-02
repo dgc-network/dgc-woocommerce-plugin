@@ -60,7 +60,7 @@ Yes, you can. Go to settings page. You will see a text field to chage the overla
 
 = 2.0.3 =
 
-* Fixed bug - 'wcapf_get_term_objects' funtion was working incorrectly
+* Fixed bug - 'dgc_get_term_objects' funtion was working incorrectly
 
 = 2.0.2 =
 

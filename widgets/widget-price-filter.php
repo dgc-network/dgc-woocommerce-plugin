@@ -2,16 +2,16 @@
 /**
  * WC Ajax Product Filter by Price
  */
-if (!class_exists('WCAPF_Price_Filter_Widget')) {
-	class WCAPF_Price_Filter_Widget extends WP_Widget {
+if (!class_exists('DGC_Price_Filter_Widget')) {
+	class DGC_Price_Filter_Widget extends WP_Widget {
 		/**
 		 * Register widget with WordPress.
 		 */
 		function __construct() {
 			parent::__construct(
-				'wcapf-price-filter', // Base ID
-				__('WC Ajax Product Filter by Price', 'wcapf'), // Name
-				array('description' => __('Filter woocommerce products by price.', 'wcapf')) // Args
+				'dgc-price-filter', // Base ID
+				__('WC Ajax Product Filter by Price', 'textdomain'), // Name
+				array('description' => __('Filter woocommerce products by price.', 'textdomain')) // Args
 			);
 		}
 
@@ -31,10 +31,10 @@ if (!class_exists('WCAPF_Price_Filter_Widget')) {
 			global $wcapf;
 
 			// price range for filtered products
-			$filtered_price_range = $wcapf->getPriceRange(true);
+			$filtered_price_range = $dgc->getPriceRange(true);
 
 			// price range for all published products
-			$unfiltered_price_range = $wcapf->getPriceRange(false);
+			$unfiltered_price_range = $dgc->getPriceRange(false);
 
 			$html = '';
 
@@ -56,15 +56,15 @@ if (!class_exists('WCAPF_Price_Filter_Widget')) {
 
 			// required scripts
 			// enqueue necessary scripts
-			wp_enqueue_style('wcapf-style');
+			wp_enqueue_style('dgc-style');
 			wp_enqueue_style('font-awesome');
-			wp_enqueue_script('wcapf-script');
+			wp_enqueue_script('dgc-script');
 
 			if ($display_type === 'slider') {
-				wp_enqueue_script('wcapf-ion-rangeslider-script');
-				wp_enqueue_script('wcapf-price-filter-script');
-				wp_enqueue_style('wcapf-ion-rangeslider-base-style');
-				wp_enqueue_style('wcapf-ion-rangeslider-skin-style');
+				wp_enqueue_script('dgc-ion-rangeslider-script');
+				wp_enqueue_script('dgc-price-filter-script');
+				wp_enqueue_style('dgc-ion-rangeslider-base-style');
+				wp_enqueue_style('dgc-ion-rangeslider-skin-style');
 
 				// get values from url
 				$set_min_val = null;
@@ -96,7 +96,7 @@ if (!class_exists('WCAPF_Price_Filter_Widget')) {
 			// HTML markup for price slider
 			// Slider markup
 			if ($display_type === 'slider') {
-				$html .= '<div class="wcapf-price-filter-wrapper">';
+				$html .= '<div class="dgc-price-filter-wrapper">';
 					$attr = '';
 					if ($min_val !== null) {
 							$attr .= ' data-min="' . $min_val . '"';
@@ -116,13 +116,13 @@ if (!class_exists('WCAPF_Price_Filter_Widget')) {
 					if ($set_max_val !== null) {
 							$attr .= ' data-to="' . $set_max_val . '"';
 					}
-					$html .= '<input id="wcapf-noui-slider" ' . $attr . '/>';
+					$html .= '<input id="dgc-noui-slider" ' . $attr . '/>';
 				$html .= '</div>';
 			}
 
 			// List markup
 			elseif ($display_type === 'list') {
-				$html .= '<div class="wcapf-layered-nav">';
+				$html .= '<div class="dgc-layered-nav">';
 					$html .= '<ul>';
 						foreach ($price_lists as $price_list) {
 
@@ -211,7 +211,7 @@ if (!class_exists('WCAPF_Price_Filter_Widget')) {
 			// Add class to before_widget from within a custom widget
 			// http://wordpress.stackexchange.com/questions/18942/add-class-to-before-widget-from-within-a-custom-widget
 
-            $widget_class = 'wcapf-ajax-filter wcapf-ajax-filter_price wcapf-ajax-filter_' . $display_type;
+            $widget_class = 'dgc-ajax-filter dgc-ajax-filter_price dgc-ajax-filter_' . $display_type;
 
             if (!empty($_GET['min-price']) || !empty($_GET['max-price']) || $instance['open_by_default']) {
                 $widget_class .= ' uk-open';
@@ -247,51 +247,51 @@ if (!class_exists('WCAPF_Price_Filter_Widget')) {
 		public function form($instance) {
 			?>
 			<p>
-				<label for="<?php echo $this->get_field_id('title'); ?>"><?php printf(__('Title:', 'wcapf')); ?></label>
+				<label for="<?php echo $this->get_field_id('title'); ?>"><?php printf(__('Title:', 'textdomain')); ?></label>
 				<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo (!empty($instance['title']) ? esc_attr($instance['title']) : ''); ?>">
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id('display_type'); ?>"><?php printf(__('Display Type:', 'wcapf')); ?></label>
+				<label for="<?php echo $this->get_field_id('display_type'); ?>"><?php printf(__('Display Type:', 'textdomain')); ?></label>
 				<select class="widefat price-filter-display-type" id="<?php echo $this->get_field_id('display_type'); ?>" name="<?php echo $this->get_field_name('display_type'); ?>">
-					<option value="slider" <?php echo ((!empty($instance['display_type']) && $instance['display_type'] === 'slider') ? 'selected="selected"' : ''); ?>><?php printf(__('Slider', 'wcapf')); ?></option>
-					<option value="list" <?php echo ((!empty($instance['display_type']) && $instance['display_type'] === 'list') ? 'selected="selected"' : ''); ?>><?php printf(__('List', 'wcapf')); ?></option>
+					<option value="slider" <?php echo ((!empty($instance['display_type']) && $instance['display_type'] === 'slider') ? 'selected="selected"' : ''); ?>><?php printf(__('Slider', 'textdomain')); ?></option>
+					<option value="list" <?php echo ((!empty($instance['display_type']) && $instance['display_type'] === 'list') ? 'selected="selected"' : ''); ?>><?php printf(__('List', 'textdomain')); ?></option>
 				</select>
 			</p>
 			<p class="price-list-currency <?php echo (!isset($instance['display_type']) || $instance['display_type'] === 'slider') ? 'hidden' : ''; ?>">
 				<input id="<?php echo $this->get_field_id('show_currency'); ?>" name="<?php echo $this->get_field_name('show_currency'); ?>" type="checkbox" value="1" <?php echo (!empty($instance['show_currency']) && $instance['show_currency'] == true) ? 'checked="checked"' : ''; ?>>
-				<label for="<?php echo $this->get_field_id('show_currency'); ?>"><?php printf(__('Show currency', 'wcapf')); ?></label>
+				<label for="<?php echo $this->get_field_id('show_currency'); ?>"><?php printf(__('Show currency', 'textdomain')); ?></label>
 			</p>
             <p>
                 <input id="<?php echo $this->get_field_id('open_by_default'); ?>" name="<?php echo $this->get_field_name('open_by_default'); ?>" type="checkbox" value="1" <?php echo (!empty($instance['open_by_default']) && $instance['open_by_default'] == true) ? 'checked="checked"' : ''; ?>>
-                <label for="<?php echo $this->get_field_id('open_by_default'); ?>"><?php printf(__('Open By Default', 'wcapf')); ?></label>
+                <label for="<?php echo $this->get_field_id('open_by_default'); ?>"><?php printf(__('Open By Default', 'textdomain')); ?></label>
             </p>
 			<div class="price-list-wrapper <?php echo (!isset($instance['display_type']) || $instance['display_type'] === 'slider') ? 'hidden' : ''; ?>">
 				<?php if (isset($instance['price_list']) && !empty($instance['price_list'])): ?>
 					<?php foreach ($instance['price_list'] as $price_list): ?>
 						<p class="price-list">
-							<input type="text" class="widefat min" name="<?php echo $this->get_field_name('price_list'); ?>[min][]" value="<?php echo $price_list['min']; ?>" placeholder="<?php printf(__('Min price', 'wcapf')); ?>" />
-							<input type="text" class="widefat to" name="<?php echo $this->get_field_name('price_list'); ?>[to][]" value="<?php echo $price_list['to']; ?>" placeholder="<?php printf(__('to', 'wcapf')); ?>" />
-							<input type="text" class="widefat max" name="<?php echo $this->get_field_name('price_list'); ?>[max][]" value="<?php echo $price_list['max']; ?>" placeholder="<?php printf(__('Max price', 'wcapf')); ?>" />
+							<input type="text" class="widefat min" name="<?php echo $this->get_field_name('price_list'); ?>[min][]" value="<?php echo $price_list['min']; ?>" placeholder="<?php printf(__('Min price', 'textdomain')); ?>" />
+							<input type="text" class="widefat to" name="<?php echo $this->get_field_name('price_list'); ?>[to][]" value="<?php echo $price_list['to']; ?>" placeholder="<?php printf(__('to', 'textdomain')); ?>" />
+							<input type="text" class="widefat max" name="<?php echo $this->get_field_name('price_list'); ?>[max][]" value="<?php echo $price_list['max']; ?>" placeholder="<?php printf(__('Max price', 'textdomain')); ?>" />
 							<a href="javascript:void(0)" class="remove-price-list">&times;</a>
 						</p>
 					<?php endforeach ?>
 				<?php else: ?>
 					<p class="price-list">
-						<input type="text" class="widefat min" name="<?php echo $this->get_field_name('price_list'); ?>[min][]" value="" placeholder="<?php printf(__('Min price', 'wcapf')); ?>" />
-						<input type="text" class="widefat to" name="<?php echo $this->get_field_name('price_list'); ?>[to][]" value="" placeholder="<?php printf(__('to', 'wcapf')); ?>" />
-						<input type="text" class="widefat max" name="<?php echo $this->get_field_name('price_list'); ?>[max][]" value="" placeholder="<?php printf(__('Max price', 'wcapf')); ?>" />
+						<input type="text" class="widefat min" name="<?php echo $this->get_field_name('price_list'); ?>[min][]" value="" placeholder="<?php printf(__('Min price', 'textdomain')); ?>" />
+						<input type="text" class="widefat to" name="<?php echo $this->get_field_name('price_list'); ?>[to][]" value="" placeholder="<?php printf(__('to', 'textdomain')); ?>" />
+						<input type="text" class="widefat max" name="<?php echo $this->get_field_name('price_list'); ?>[max][]" value="" placeholder="<?php printf(__('Max price', 'textdomain')); ?>" />
 						<a href="javascript:void(0)" class="remove-price-list">&times;</a>
 					</p>
 				<?php endif ?>
 			</div>
 			<p class="add-price-list-button-wrapper <?php echo (!isset($instance['display_type']) || $instance['display_type'] === 'slider') ? 'hidden' : ''; ?>">
-				<a href="javascript:void(0)" class="button add-price-list"><?php printf(__('Add', 'wcapf')); ?></a>
+				<a href="javascript:void(0)" class="button add-price-list"><?php printf(__('Add', 'textdomain')); ?></a>
 			</p>
 			<div class="price-list-empty hidden">
 				<p class="price-list">
-					<input type="text" class="widefat min" name="<?php echo $this->get_field_name('price_list'); ?>[min][]" value="" placeholder="<?php printf(__('Min price', 'wcapf')); ?>" />
-					<input type="text" class="widefat to" name="<?php echo $this->get_field_name('price_list'); ?>[to][]" value="" placeholder="<?php printf(__('to', 'wcapf')); ?>" />
-					<input type="text" class="widefat max" name="<?php echo $this->get_field_name('price_list'); ?>[max][]" value="" placeholder="<?php printf(__('Max price', 'wcapf')); ?>" />
+					<input type="text" class="widefat min" name="<?php echo $this->get_field_name('price_list'); ?>[min][]" value="" placeholder="<?php printf(__('Min price', 'textdomain')); ?>" />
+					<input type="text" class="widefat to" name="<?php echo $this->get_field_name('price_list'); ?>[to][]" value="" placeholder="<?php printf(__('to', 'textdomain')); ?>" />
+					<input type="text" class="widefat max" name="<?php echo $this->get_field_name('price_list'); ?>[max][]" value="" placeholder="<?php printf(__('Max price', 'textdomain')); ?>" />
 					<a href="javascript:void(0)" class="remove-price-list">&times;</a>
 				</p>
 			</div>
@@ -404,9 +404,9 @@ if (!class_exists('WCAPF_Price_Filter_Widget')) {
 }
 
 // register widget
-if (!function_exists('wcapf_register_price_filter_widget')) {
-	function wcapf_register_price_filter_widget() {
-		register_widget('WCAPF_Price_Filter_Widget');
+if (!function_exists('dgc_register_price_filter_widget')) {
+	function dgc_register_price_filter_widget() {
+		register_widget('DGC_Price_Filter_Widget');
 	}
-	add_action('widgets_init', 'wcapf_register_price_filter_widget');
+	add_action('widgets_init', 'dgc_register_price_filter_widget');
 }

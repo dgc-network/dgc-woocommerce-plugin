@@ -2,16 +2,16 @@
 /**
  * WC Ajax Product Filter by Category
  */
-if (!class_exists('WCAPF_Category_Filter_Widget')) {
-	class WCAPF_Category_Filter_Widget extends WP_Widget {
+if (!class_exists('DGC_Category_Filter_Widget')) {
+	class DGC_Category_Filter_Widget extends WP_Widget {
 		/**
 		 * Register widget with WordPress.
 		 */
 		function __construct() {
 			parent::__construct(
-				'wcapf-category-filter', // Base ID
-				__('WC Ajax Product Filter by Category', 'wcapf'), // Name
-				array('description' => __('Filter woocommerce products by category.', 'wcapf')) // Args
+				'dgc-category-filter', // Base ID
+				__('WC Ajax Product Filter by Category', 'textdomain'), // Name
+				array('description' => __('Filter woocommerce products by category.', 'textdomain')) // Args
 			);
 		}
 
@@ -29,9 +29,9 @@ if (!class_exists('WCAPF_Category_Filter_Widget')) {
 			}
 
 			// enqueue necessary scripts
-			wp_enqueue_style('wcapf-style');
+			wp_enqueue_style('dgc-style');
 			wp_enqueue_style('font-awesome');
-			wp_enqueue_script('wcapf-script');
+			wp_enqueue_script('dgc-script');
 			
 			if (empty($instance['query_type'])) {
 				return;
@@ -64,9 +64,9 @@ if (!class_exists('WCAPF_Category_Filter_Widget')) {
 
 			// if display type list
 			if ($display_type === 'list') {
-				$output = wcapf_list_terms($attr_args);
+				$output = dgc_list_terms($attr_args);
 			} elseif ($display_type === 'dropdown') {
-				$output = wcapf_dropdown_terms($attr_args);
+				$output = dgc_dropdown_terms($attr_args);
 			}
 			
 			$html = $output['html'];
@@ -79,9 +79,9 @@ if (!class_exists('WCAPF_Category_Filter_Widget')) {
 
 			// if $selected_terms array is empty we will hide this widget totally
 			if ($found === false) {
-				$widget_class = 'wcapf-widget-hidden woocommerce wcapf-ajax-term-filter';
+				$widget_class = 'dgc-widget-hidden woocommerce dgc-ajax-term-filter';
 			} else {
-				$widget_class = 'woocommerce wcapf-ajax-term-filter';
+				$widget_class = 'woocommerce dgc-ajax-term-filter';
 			}
 
 			// no class found, so add it
@@ -114,38 +114,38 @@ if (!class_exists('WCAPF_Category_Filter_Widget')) {
 		public function form($instance) {
 			?>
 			<p>
-				<label for="<?php echo $this->get_field_id('title'); ?>"><?php printf(__('Title:', 'wcapf')); ?></label>
+				<label for="<?php echo $this->get_field_id('title'); ?>"><?php printf(__('Title:', 'textdomain')); ?></label>
 				<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo (!empty($instance['title']) ? esc_attr($instance['title']) : ''); ?>">
 			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id('display_type'); ?>"><?php printf(__('Display Type')) ?></label>
 				<select class="widefat" id="<?php echo $this->get_field_id('display_type'); ?>" name="<?php echo $this->get_field_name('display_type'); ?>">
-					<option value="list" <?php echo ((!empty($instance['display_type']) && $instance['display_type'] === 'list') ? 'selected="selected"' : ''); ?>><?php printf(__('List', 'wcapf')); ?></option>
-					<option value="dropdown" <?php echo ((!empty($instance['display_type']) && $instance['display_type'] === 'dropdown') ? 'selected="selected"' : ''); ?>><?php printf(__('Dropdown', 'wcapf')); ?></option>
+					<option value="list" <?php echo ((!empty($instance['display_type']) && $instance['display_type'] === 'list') ? 'selected="selected"' : ''); ?>><?php printf(__('List', 'textdomain')); ?></option>
+					<option value="dropdown" <?php echo ((!empty($instance['display_type']) && $instance['display_type'] === 'dropdown') ? 'selected="selected"' : ''); ?>><?php printf(__('Dropdown', 'textdomain')); ?></option>
 				</select>
 			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id('query_type'); ?>"><?php printf(__('Query Type')) ?></label>
 				<select class="widefat" id="<?php echo $this->get_field_id('query_type'); ?>" name="<?php echo $this->get_field_name('query_type'); ?>">
-					<option value="and" <?php echo ((!empty($instance['query_type']) && $instance['query_type'] === 'and') ? 'selected="selected"' : ''); ?>><?php printf(__('AND', 'wcapf')); ?></option>
-					<option value="or" <?php echo ((!empty($instance['query_type']) && $instance['query_type'] === 'or') ? 'selected="selected"' : ''); ?>><?php printf(__('OR', 'wcapf')); ?></option>
+					<option value="and" <?php echo ((!empty($instance['query_type']) && $instance['query_type'] === 'and') ? 'selected="selected"' : ''); ?>><?php printf(__('AND', 'textdomain')); ?></option>
+					<option value="or" <?php echo ((!empty($instance['query_type']) && $instance['query_type'] === 'or') ? 'selected="selected"' : ''); ?>><?php printf(__('OR', 'textdomain')); ?></option>
 				</select>
 			</p>
 			<p>
 				<input id="<?php echo $this->get_field_id('enable_multiple'); ?>" name="<?php echo $this->get_field_name('enable_multiple'); ?>" type="checkbox" value="1" <?php echo (!empty($instance['enable_multiple']) && $instance['enable_multiple'] == true) ? 'checked="checked"' : ''; ?>>
-				<label for="<?php echo $this->get_field_id('enable_multiple'); ?>"><?php printf(__('Enable multiple filter', 'wcapf')); ?></label>
+				<label for="<?php echo $this->get_field_id('enable_multiple'); ?>"><?php printf(__('Enable multiple filter', 'textdomain')); ?></label>
 			</p>
 			<p>
 				<input id="<?php echo $this->get_field_id('show_count'); ?>" name="<?php echo $this->get_field_name('show_count'); ?>" type="checkbox" value="1" <?php echo (!empty($instance['show_count']) && $instance['show_count'] == true) ? 'checked="checked"' : ''; ?>>
-				<label for="<?php echo $this->get_field_id('show_count'); ?>"><?php printf(__('Show count', 'wcapf')); ?></label>
+				<label for="<?php echo $this->get_field_id('show_count'); ?>"><?php printf(__('Show count', 'textdomain')); ?></label>
 			</p>
 			<p>
 				<input id="<?php echo $this->get_field_id('hierarchical'); ?>" name="<?php echo $this->get_field_name('hierarchical'); ?>" type="checkbox" value="1" <?php echo (!empty($instance['hierarchical']) && $instance['hierarchical'] == true) ? 'checked="checked"' : ''; ?>>
-				<label for="<?php echo $this->get_field_id('hierarchical'); ?>"><?php printf(__('Show hierarchy', 'wcapf')); ?></label>
+				<label for="<?php echo $this->get_field_id('hierarchical'); ?>"><?php printf(__('Show hierarchy', 'textdomain')); ?></label>
 			</p>
 			<p>
 				<input id="<?php echo $this->get_field_id('show_children_only'); ?>" name="<?php echo $this->get_field_name('show_children_only'); ?>" type="checkbox" value="1" <?php echo (!empty($instance['show_children_only']) && $instance['show_children_only'] == true) ? 'checked="checked"' : ''; ?>>
-				<label for="<?php echo $this->get_field_id('show_children_only'); ?>"><?php printf(__('Only show children of the current attribute', 'wcapf')); ?></label>
+				<label for="<?php echo $this->get_field_id('show_children_only'); ?>"><?php printf(__('Only show children of the current attribute', 'textdomain')); ?></label>
 			</p>
 			<?php
 		}
@@ -175,9 +175,9 @@ if (!class_exists('WCAPF_Category_Filter_Widget')) {
 }
 
 // register widget
-if (!function_exists('wcapf_register_category_filter_widget')) {
-	function wcapf_register_category_filter_widget() {
-		register_widget('WCAPF_Category_Filter_Widget');
+if (!function_exists('dgc_register_category_filter_widget')) {
+	function dgc_register_category_filter_widget() {
+		register_widget('DGC_Category_Filter_Widget');
 	}
-	add_action('widgets_init', 'wcapf_register_category_filter_widget');
+	add_action('widgets_init', 'dgc_register_category_filter_widget');
 }

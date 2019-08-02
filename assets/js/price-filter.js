@@ -1,11 +1,11 @@
 jQuery(document).ready(function($) {
-	if (typeof wcapf_price_filter_params === 'undefined') {
+	if (typeof dgc_price_filter_params === 'undefined') {
 		return false;
 	}
 
 	// price slider
 	wcapfInitPriceSlider = function() {
-		$('#wcapf-noui-slider').ionRangeSlider({
+		$('#dgc-noui-slider').ionRangeSlider({
 			type: "double",
 			min: 0,
 			max: 1000000,
@@ -34,7 +34,7 @@ jQuery(document).ready(function($) {
 	}
 
     // position currency symbol
-	// $(document).bind('update_wcapf_slider_vals', function(event, value_holder, value) {
+	// $(document).bind('update_dgc_slider_vals', function(event, value_holder, value) {
 	//     // if WooCommerce Currency Switcher plugin is activated
 	//     if (typeof woocs_current_currency !== 'undefined') {
 	//     	if (woocs_current_currency.position === 'left') {
@@ -47,14 +47,14 @@ jQuery(document).ready(function($) {
 	//     		$(value_holder).html(value + ' ' + woocs_current_currency.symbol);
 	//     	}
 	//     } else {
-	// 	    if (wcapf_price_filter_params.currency_pos === 'left') {
-	// 	    	$(value_holder).html(wcapf_price_filter_params.currency_symbol + value);
-	// 	    } else if (wcapf_price_filter_params.currency_pos === 'left_space') {
-	// 	    	$(value_holder).html(wcapf_price_filter_params.currency_symbol + ' ' + value);
-	// 	    } else if (wcapf_price_filter_params.currency_pos === 'right') {
-	// 	    	$(value_holder).html(value + wcapf_price_filter_params.currency_symbol);
-	// 	    } else if (wcapf_price_filter_params.currency_pos === 'right_space') {
-	// 	    	$(value_holder).html(value + ' ' + wcapf_price_filter_params.currency_symbol);
+	// 	    if (dgc_price_filter_params.currency_pos === 'left') {
+	// 	    	$(value_holder).html(dgc_price_filter_params.currency_symbol + value);
+	// 	    } else if (dgc_price_filter_params.currency_pos === 'left_space') {
+	// 	    	$(value_holder).html(dgc_price_filter_params.currency_symbol + ' ' + value);
+	// 	    } else if (dgc_price_filter_params.currency_pos === 'right') {
+	// 	    	$(value_holder).html(value + dgc_price_filter_params.currency_symbol);
+	// 	    } else if (dgc_price_filter_params.currency_pos === 'right_space') {
+	// 	    	$(value_holder).html(value + ' ' + dgc_price_filter_params.currency_symbol);
 	// 	    }
 	//     }
 	// });

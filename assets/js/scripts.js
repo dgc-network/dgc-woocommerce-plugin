@@ -1,13 +1,13 @@
 jQuery(document).ready(function($) {
-	// return false if wcapf_params variable is not found
-	if (typeof wcapf_params === 'undefined') {
+	// return false if dgc_params variable is not found
+	if (typeof dgc_params === 'undefined') {
 		return false;
 	}
 
 	// store widget ids those will be replaced with new data
 	var widgets = {};
 
-	$('.wcapf-ajax-filter').each(function(index) {
+	$('.dgc-ajax-filter').each(function(index) {
 		var widget_id = $(this).attr('id');
 		widgets[index] = widget_id;
 	});
@@ -16,20 +16,20 @@ jQuery(document).ready(function($) {
 	wcapfBeforeUpdate = function() {
 		var overlay_color;
 
-		if (wcapf_params.overlay_bg_color.length) {
-			overlay_color = wcapf_params.overlay_bg_color;
+		if (dgc_params.overlay_bg_color.length) {
+			overlay_color = dgc_params.overlay_bg_color;
 		} else {
 			overlay_color = '#fff';
 		}
 
-		var markup = '<div class="wcapf-before-update" style="background-color: ' + overlay_color + '"></div>',
+		var markup = '<div class="dgc-before-update" style="background-color: ' + overlay_color + '"></div>',
 			holder,
 			top_scroll_offset = 0;
 
-		if ($(wcapf_params.shop_loop_container.length)) {
-			holder = wcapf_params.shop_loop_container;
-		} else if ($(wcapf_params.not_found_container).length) {
-			holder = wcapf_params.not_found_container;
+		if ($(dgc_params.shop_loop_container.length)) {
+			holder = dgc_params.shop_loop_container;
+		} else if ($(dgc_params.not_found_container).length) {
+			holder = dgc_params.not_found_container;
 		}
 
 		if (holder.length) {
@@ -37,12 +37,12 @@ jQuery(document).ready(function($) {
 			$(markup).prependTo(holder);
 
 			// scroll to top
-			if (typeof wcapf_params.scroll_to_top !== 'undefined' && wcapf_params.scroll_to_top == true && window.matchMedia("(min-width: 768px)").matches) {
+			if (typeof dgc_params.scroll_to_top !== 'undefined' && dgc_params.scroll_to_top == true && window.matchMedia("(min-width: 768px)").matches) {
 				var scroll_to_top_offset,
 					top_scroll_offset;
 
-				if (typeof wcapf_params.scroll_to_top_offset !== 'undefined' && wcapf_params.scroll_to_top_offset.length) {
-					scroll_to_top_offset = parseInt(wcapf_params.scroll_to_top_offset);
+				if (typeof dgc_params.scroll_to_top_offset !== 'undefined' && dgc_params.scroll_to_top_offset.length) {
+					scroll_to_top_offset = parseInt(dgc_params.scroll_to_top_offset);
 				} else {
 					scroll_to_top_offset = 100;
 				}
@@ -69,8 +69,8 @@ jQuery(document).ready(function($) {
 
 		$.get(window.location.href, function(data) {
 			var $data = jQuery(data),
-				shop_loop = $data.find(wcapf_params.shop_loop_container),
-				not_found = $data.find(wcapf_params.not_found_container);
+				shop_loop = $data.find(dgc_params.shop_loop_container),
+				not_found = $data.find(dgc_params.not_found_container);
 
 			// replace widgets data with new data
 			$.each(widgets, function(index, id) {
@@ -86,20 +86,20 @@ jQuery(document).ready(function($) {
 			});
 
 			// replace old shop loop with new one
-			if (wcapf_params.shop_loop_container == wcapf_params.not_found_container) {
-				$(wcapf_params.shop_loop_container).html(shop_loop.html());
+			if (dgc_params.shop_loop_container == dgc_params.not_found_container) {
+				$(dgc_params.shop_loop_container).html(shop_loop.html());
 			} else {
-				if ($(wcapf_params.not_found_container).length) {
+				if ($(dgc_params.not_found_container).length) {
 					if (shop_loop.length) {
-						$(wcapf_params.not_found_container).html(shop_loop.html());
+						$(dgc_params.not_found_container).html(shop_loop.html());
 					} else if (not_found.length) {
-						$(wcapf_params.not_found_container).html(not_found.html());
+						$(dgc_params.not_found_container).html(not_found.html());
 					}
-				} else if ($(wcapf_params.shop_loop_container).length) {
+				} else if ($(dgc_params.shop_loop_container).length) {
 					if (shop_loop.length) {
-						$(wcapf_params.shop_loop_container).html(shop_loop.html());
+						$(dgc_params.shop_loop_container).html(shop_loop.html());
 					} else if (not_found.length) {
-						$(wcapf_params.shop_loop_container).html(not_found.html());
+						$(dgc_params.shop_loop_container).html(not_found.html());
 					}
 				}
 			}
@@ -114,8 +114,8 @@ jQuery(document).ready(function($) {
       wcapfRangeFilter();
 
 			// run scripts after shop loop undated
-			if (typeof wcapf_params.custom_scripts !== 'undefined' && wcapf_params.custom_scripts.length > 0) {
-				eval(wcapf_params.custom_scripts);
+			if (typeof dgc_params.custom_scripts !== 'undefined' && dgc_params.custom_scripts.length > 0) {
+				eval(dgc_params.custom_scripts);
 			}
 		});
 	}
@@ -290,7 +290,7 @@ jQuery(document).ready(function($) {
 	}
 
 	// handle the filter request
-	$('.wcapf-ajax-filter_list').not('.wcapf-ajax-filter_price').on('click', 'li a', function(event) {
+	$('.dgc-ajax-filter_list').not('.dgc-ajax-filter_price').on('click', 'li a', function(event) {
 		event.preventDefault();
 		var element = $(this),
 			filter_key = element.attr('data-key'),
@@ -306,7 +306,7 @@ jQuery(document).ready(function($) {
 	});
 
 	// handle the filter request for price filter display type list
-	$('.wcapf-ajax-filter_price.wcapf-ajax-filter_list').on('click', 'li a', function(event) {
+	$('.dgc-ajax-filter_price.dgc-ajax-filter_list').on('click', 'li a', function(event) {
 		event.preventDefault();
 		var element = $(this),
 			filter_key_min = element.attr('data-key-min'),
@@ -334,8 +334,8 @@ jQuery(document).ready(function($) {
 	});
 
 	// handle the pagination request
-	if (wcapf_params.pagination_container.length > 0) {
-		var holder = wcapf_params.pagination_container + ' a';
+	if (dgc_params.pagination_container.length > 0) {
+		var holder = dgc_params.pagination_container + ' a';
 
 		$(document).on('click', holder, function(event) {
 			event.preventDefault();
@@ -355,8 +355,8 @@ jQuery(document).ready(function($) {
 
     // ordering
     wcapfInitOrder = function() {
-    	if (typeof wcapf_params.sorting_control !== 'undefined' && wcapf_params.sorting_control.length && wcapf_params.sorting_control == true) {
-	    	$('.wcapf-before-products').find('.woocommerce-ordering').each(function(index) {
+    	if (typeof dgc_params.sorting_control !== 'undefined' && dgc_params.sorting_control.length && dgc_params.sorting_control == true) {
+	    	$('.dgc-before-products').find('.woocommerce-ordering').each(function(index) {
 	    		$(this).on('submit', function(event) {
 	    			event.preventDefault();
 	    		});
@@ -381,7 +381,7 @@ jQuery(document).ready(function($) {
     wcapfInitOrder();
 
     // remove active filters
-    $(document).on('click', '.wcapf-active-filters a:not(.reset)', function(event) {
+    $(document).on('click', '.dgc-active-filters a:not(.reset)', function(event) {
     	event.preventDefault();
     	var element = $(this),
     		filter_key = element.attr('data-key'),
@@ -392,7 +392,7 @@ jQuery(document).ready(function($) {
 	    	history.pushState({}, '', query);
 
 	    	// price slider
-        var priceSlider = $('#wcapf-noui-slider')
+        var priceSlider = $('#dgc-noui-slider')
 	    	if (priceSlider.length && jQuery().ionRangeSlider) {
           var ionRangeSlider = priceSlider.data("ionRangeSlider");
 					if (filter_key === 'min-price') {
@@ -414,7 +414,7 @@ jQuery(document).ready(function($) {
     });
 
     // clear all filters
-    $(document).on('click', '.wcapf-active-filters a.reset', function(event) {
+    $(document).on('click', '.dgc-active-filters a.reset', function(event) {
     	event.preventDefault();
     	var location = $(this).attr('data-location');
     	history.pushState({}, '', location);
@@ -432,16 +432,16 @@ jQuery(document).ready(function($) {
 	}
 
 	wcapfDropDownFilter = function() {
-		if ($('.wcapf-select2-single').length) {
-			$('.wcapf-select2-single').select2({
+		if ($('.dgc-select2-single').length) {
+			$('.dgc-select2-single').select2({
 			    templateResult: formatState,
 			    minimumResultsForSearch: Infinity,
 			    allowClear: true
 			});
 		}
 
-		if ($('.wcapf-select2-multiple').length) {
-			$('.wcapf-select2-multiple').select2({
+		if ($('.dgc-select2-multiple').length) {
+			$('.dgc-select2-multiple').select2({
 			    templateResult: formatState,
 			});
 		}
@@ -452,7 +452,7 @@ jQuery(document).ready(function($) {
 	// initialize dropdown filter
 	wcapfDropDownFilter();
 
-	$(document).on('change', '.wcapf-select2', function(event) {
+	$(document).on('change', '.dgc-select2', function(event) {
 		event.preventDefault();
 		var filter_key = $(this).attr('name'),
 			filter_val = $(this).val();
@@ -472,7 +472,7 @@ jQuery(document).ready(function($) {
   wcapfRangeFilter = function() {
     var params = wcapfGetUrlVars();
 
-    $('.wcapf-range-terms').each(function () {
+    $('.dgc-range-terms').each(function () {
     	var initialValues = $(this).data('initial-values');
       var filter_key = $(this).attr('name');
       var values = [];

@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
   // dimensions slider
   wcapfInitDimensionsSlider = function() {
-    $('.wcapf-dimensions-slider').each(function () {
+    $('.dgc-dimensions-slider').each(function () {
       var filter_key = $(this).attr('name');
 
       $(this).ionRangeSlider({
