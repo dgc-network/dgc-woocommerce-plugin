@@ -1,4 +1,4 @@
-# WC Ajax Product Filter
+# DGC WooCommerce Plus
 
 WooCommerce Ajax Product Filter - adds advanced products filtering to your shop.
 
@@ -52,8 +52,8 @@ Yes, you can. Go to settings page. You will see a text field to chage the overla
 ## Screenshots
 
 1. Plugin frontend
-2. WC Ajax Product Filter by Attribute widget settings
-3. WC Ajax Product Filter by Price display type list widget settings
+2. DGC WooCommerce Plus by Attribute widget settings
+3. DGC WooCommerce Plus by Price display type list widget settings
 4. Backend settings
 
 ## Changelog

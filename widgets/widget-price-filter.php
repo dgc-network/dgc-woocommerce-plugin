@@ -1,6 +1,6 @@
 <?php
 /**
- * WC Ajax Product Filter by Price
+ * DGC WooCommerce Plus by Price
  */
 if (!class_exists('DGC_Price_Filter_Widget')) {
 	class DGC_Price_Filter_Widget extends WP_Widget {
@@ -10,7 +10,7 @@ if (!class_exists('DGC_Price_Filter_Widget')) {
 		function __construct() {
 			parent::__construct(
 				'dgc-price-filter', // Base ID
-				__('WC Ajax Product Filter by Price', 'textdomain'), // Name
+				__('DGC WooCommerce Plus by Price', 'textdomain'), // Name
 				array('description' => __('Filter woocommerce products by price.', 'textdomain')) // Args
 			);
 		}

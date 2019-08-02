@@ -1,4 +1,4 @@
-=== WC Ajax Product Filter ===
+=== DGC WooCommerce Plus ===
 Contributors: shamimmoeen
 Tags: product filter, ajax product filter, ajax filter, woocommerce ajax product filter, woocommerce product filter, woocommerce ajax filter, woocommerce filter, products filter, ajax filter, advanced products filter, woocommerce layered nav, woocommerce layered navigation, ajax filtered nav, ajax filtered navigation, price filter, ajax price filter, ajax product search, woocommerce product sorting, woocommerce, wc ajax product filter, wc product filter, wc ajax filter, wc filter
 Requires at least: 4.0
@@ -59,8 +59,8 @@ Yes, you can. Go to settings page. You will see a text field to chage the overla
 == Screenshots ==
 
 1. Plugin frontend
-2. WC Ajax Product Filter by Attribute widget settings
-3. WC Ajax Product Filter by Price display type list widget settings
+2. DGC WooCommerce Plus by Attribute widget settings
+3. DGC WooCommerce Plus by Price display type list widget settings
 4. Backend settings
 
 == Changelog ==

@@ -1,6 +1,6 @@
 <?php
 /**
- * WC Ajax Product Filter by Category
+ * DGC WooCommerce Plus by Category
  */
 if (!class_exists('DGC_Category_Filter_Widget')) {
 	class DGC_Category_Filter_Widget extends WP_Widget {
@@ -10,7 +10,7 @@ if (!class_exists('DGC_Category_Filter_Widget')) {
 		function __construct() {
 			parent::__construct(
 				'dgc-category-filter', // Base ID
-				__('WC Ajax Product Filter by Category', 'textdomain'), // Name
+				__('DGC WooCommerce Plus by Category', 'textdomain'), // Name
 				array('description' => __('Filter woocommerce products by category.', 'textdomain')) // Args
 			);
 		}

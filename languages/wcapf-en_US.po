@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WC Ajax Product Filter\n"
+"Project-Id-Version: DGC WooCommerce Plus\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-22 14:34+0000\n"
 "PO-Revision-Date: 2017-01-22 14:40+0000\n"
@@ -15,15 +15,15 @@ msgstr ""
 
 #. Name of the plugin
 #: wcapf.php:198 wcapf.php:198 includes/settings.php:12
-msgid "WC Ajax Product Filter"
+msgid "DGC WooCommerce Plus"
 msgstr ""
 
 #: wcapf.php:941
-msgid "WC Ajax Product Filter needs WooCommerce plguin to work."
+msgid "DGC WooCommerce Plus needs WooCommerce plguin to work."
 msgstr ""
 
 #: wcapf.php:951
-msgid "To use WC Ajax Product Filter update your WooCommerce plugin."
+msgid "To use DGC WooCommerce Plus update your WooCommerce plugin."
 msgstr ""
 
 #: wcapf.php:963
@@ -144,7 +144,7 @@ msgstr ""
 
 #. Base ID
 #: widgets/widget-price-filter.php:13
-msgid "WC Ajax Product Filter by Price"
+msgid "DGC WooCommerce Plus by Price"
 msgstr ""
 
 #: widgets/widget-price-filter.php:14
@@ -202,7 +202,7 @@ msgstr ""
 
 #. Base ID
 #: widgets/widget-category-filter.php:13
-msgid "WC Ajax Product Filter by Category"
+msgid "DGC WooCommerce Plus by Category"
 msgstr ""
 
 #: widgets/widget-category-filter.php:14
@@ -275,7 +275,7 @@ msgstr ""
 
 #. Base ID
 #: widgets/widget-attribute-filter.php:13
-msgid "WC Ajax Product Filter by Attribute"
+msgid "DGC WooCommerce Plus by Attribute"
 msgstr ""
 
 #: widgets/widget-attribute-filter.php:14

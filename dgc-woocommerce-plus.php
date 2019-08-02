@@ -199,7 +199,7 @@ if (!class_exists('DGC_Woocommerce_Plus')) {
 		 */
 		public function adminMenu()
 		{
-			add_options_page(__('WC Ajax Product Filter', 'textdomain'), __('WC Ajax Product Filter', 'textdomain'), 'manage_options', 'dgc-settings', array($this, 'settingsPage'));
+			add_options_page(__('DGC WooCommerce Plus', 'textdomain'), __('DGC WooCommerce Plus', 'textdomain'), 'manage_options', 'dgc-settings', array($this, 'settingsPage'));
 		}
 
 		/**
@@ -1000,7 +1000,7 @@ if (!class_exists('DGC_Woocommerce_Plus')) {
 		public function needWoocommerce()
 		{
 			echo '<div class="error">';
-			echo '<p>' . __('WC Ajax Product Filter needs WooCommerce plguin to work.', 'textdomain') . '</p>';
+			echo '<p>' . __('DGC WooCommerce Plus needs WooCommerce plguin to work.', 'textdomain') . '</p>';
 			echo '</div>';
 		}
 
@@ -1010,7 +1010,7 @@ if (!class_exists('DGC_Woocommerce_Plus')) {
 		public function updateWoocommerce()
 		{
 			echo '<div class="error">';
-			echo '<p>' . __('To use WC Ajax Product Filter update your WooCommerce plugin.', 'textdomain') . '</p>';
+			echo '<p>' . __('To use DGC WooCommerce Plus update your WooCommerce plugin.', 'textdomain') . '</p>';
 			echo '</div>';
 		}
 

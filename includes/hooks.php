@@ -1,6 +1,6 @@
 <?php
 /**
- * List of hooks in WC Ajax Product Filter plugin.
+ * List of hooks in DGC WooCommerce Plus plugin.
  */
 
 // Exit if accessed directly

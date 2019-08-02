@@ -1,6 +1,6 @@
 <?php
 /**
- * Necessary functions in WC Ajax Product Filter plugin.
+ * Necessary functions in DGC WooCommerce Plus plugin.
  */
 
 // Exit if accessed directly

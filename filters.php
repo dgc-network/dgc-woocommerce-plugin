@@ -1,6 +1,6 @@
 <?php
 /*
-List of available filters in WC Ajax Product Filter plugin.
+List of available filters in DGC WooCommerce Plus plugin.
 You can use these filterns in your theme in funtions.php file
 and set different default settings.
 */
