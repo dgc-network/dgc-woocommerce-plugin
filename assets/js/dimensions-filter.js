@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
   // dimensions slider
-  wcapfInitDimensionsSlider = function() {
+  dgcInitDimensionsSlider = function() {
     $('.dgc-dimensions-slider').each(function () {
       var filter_key = $(this).attr('name');
 
@@ -10,26 +10,26 @@ jQuery(document).ready(function($) {
         onFinish: function (data) {
           // remove this parameter if set value is equal to max val
           if (data.to === data.max) {
-            history.pushState({}, '', wcapfRemoveQueryStringParameter('max-' + filter_key));
+            history.pushState({}, '', dgcRemoveQueryStringParameter('max-' + filter_key));
           } else {
-            wcapfUpdateQueryStringParameter('max-' + filter_key, data.to);
+            dgcUpdateQueryStringParameter('max-' + filter_key, data.to);
           }
 
           // remove this parameter if set value is equal to max val
           if (data.from === data.min) {
-            history.pushState({}, '', wcapfRemoveQueryStringParameter('min-' + filter_key));
+            history.pushState({}, '', dgcRemoveQueryStringParameter('min-' + filter_key));
           } else {
-            wcapfUpdateQueryStringParameter('min-' + filter_key, data.from);
+            dgcUpdateQueryStringParameter('min-' + filter_key, data.from);
           }
 
           // filter products without reinitializing price slider
-          wcapfFilterProducts();
+          dgcFilterProducts();
         }
       });
     });
   }
 
   // initialize price slider
-  wcapfInitDimensionsSlider();
-	$(document).on('wcapf:widget_update', wcapfInitDimensionsSlider);
+  dgcInitDimensionsSlider();
+	$(document).on('wcapf:widget_update', dgcInitDimensionsSlider);
 });

@@ -13,7 +13,7 @@ jQuery(document).ready(function($) {
 	});
 
 	// scripts to run before updating shop loop
-	wcapfBeforeUpdate = function() {
+	dgcBeforeUpdate = function() {
 		var overlay_color;
 
 		if (dgc_params.overlay_bg_color.length) {
@@ -60,12 +60,12 @@ jQuery(document).ready(function($) {
 	}
 
 	// scripts to run after updating shop loop
-	wcapfAfterUpdate = function() {}
+	dgcBeforeUpdate = function() {}
 
 	// load filtered products
-	wcapfFilterProducts = function() {
+	dgcFilterProducts = function() {
 		// run before update function: show a loading image and scroll to top
-		wcapfBeforeUpdate();
+		dgcBeforeUpdate();
 
 		$.get(window.location.href, function(data) {
 			var $data = jQuery(data),
@@ -105,13 +105,13 @@ jQuery(document).ready(function($) {
 			}
 
 			// reinitialize ordering
-			wcapfInitOrder();
+			dgcInitOrder();
 
       // reinitialize dropdown filter
-      wcapfDropDownFilter();
+      dgcDropDownFilter();
 
       // reinitialize range filter
-      wcapfRangeFilter();
+      dgcRangeFilter();
 
 			// run scripts after shop loop undated
 			if (typeof dgc_params.custom_scripts !== 'undefined' && dgc_params.custom_scripts.length > 0) {
@@ -121,7 +121,7 @@ jQuery(document).ready(function($) {
 	}
 
 	// URL Parser
-	wcapfGetUrlVars = function(url) {
+	dgcGetUrlVars = function(url) {
 	    var vars = {}, hash;
 
 	    if (typeof url == 'undefined') {
@@ -140,9 +140,9 @@ jQuery(document).ready(function($) {
 
 	// if current page is greater than 1 then we should set it to 1
 	// everytime we add new query to url to prevent page not found error.
-	wcapfFixPagination = function() {
+	dgcFixPagination = function() {
 		var url = window.location.href,
-			params = wcapfGetUrlVars(url);
+			params = dgcGetUrlVars(url);
 
 		if (current_page = parseInt(url.replace(/.+\/page\/([0-9]+)+/, "$1"))) {
 			if (current_page > 1) {
@@ -160,13 +160,13 @@ jQuery(document).ready(function($) {
 	}
 
 	// update query string for categories, meta etc..
-	wcapfUpdateQueryStringParameter = function(key, value, push_history, url) {
+	dgcUpdateQueryStringParameter = function(key, value, push_history, url) {
 		if (typeof push_history === 'undefined') {
 			push_history = true;
 		}
 
 		if (typeof url === 'undefined') {
-			url = wcapfFixPagination();
+			url = dgcFixPagination();
 		}
 
 		var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i"),
@@ -188,12 +188,12 @@ jQuery(document).ready(function($) {
 	}
 
 	// remove parameter from url
-	wcapfRemoveQueryStringParameter = function(filter_key, url) {
+	dgcRemoveQueryStringParameter = function(filter_key, url) {
 		if (typeof url === 'undefined') {
-			url = wcapfFixPagination();
+			url = dgcFixPagination();
 		}
 
-		var params = wcapfGetUrlVars(url),
+		var params = dgcGetUrlVars(url),
 			count_params = Object.keys(params).length,
 			start_position = url.indexOf('?'),
 			param_position = url.indexOf(filter_key),
@@ -217,33 +217,33 @@ jQuery(document).ready(function($) {
 	}
 
 	// add filter if not exists else remove filter
-	wcapfSingleFilter = function(filter_key, filter_val) {
-		var params = wcapfGetUrlVars(),
+	dgcSingleFilter = function(filter_key, filter_val) {
+		var params = dgcGetUrlVars(),
 			query;
 
 		if (typeof params[filter_key] !== 'undefined' && params[filter_key] == filter_val) {
-			query = wcapfRemoveQueryStringParameter(filter_key);
+			query = dgcRemoveQueryStringParameter(filter_key);
 		} else {
-			query = wcapfUpdateQueryStringParameter(filter_key, filter_val, false);
+			query = dgcUpdateQueryStringParameter(filter_key, filter_val, false);
 		}
 
 		// update url
 		history.pushState({}, '', query);
 
 		// filter products
-		wcapfFilterProducts();
+		dgcFilterProducts();
 	}
 
 	// take the key and value and make query
-	wcapfMakeParameters = function(filter_key, filter_val, url) {
+	dgcMakeParameters = function(filter_key, filter_val, url) {
 		var params,
 			next_vals,
 			empty_val = false;
 
 		if (typeof url !== 'undefined') {
-			params = wcapfGetUrlVars(url);
+			params = dgcGetUrlVars(url);
 		} else {
-			params = wcapfGetUrlVars();
+			params = dgcGetUrlVars();
 		}
 
 		if (typeof params[filter_key] != 'undefined') {
@@ -279,14 +279,14 @@ jQuery(document).ready(function($) {
 
 		// update url and query string
 		if (empty_val == false) {
-			wcapfUpdateQueryStringParameter(filter_key, next_vals);
+			dgcUpdateQueryStringParameter(filter_key, next_vals);
 		} else {
-			var query = wcapfRemoveQueryStringParameter(filter_key);
+			var query = dgcRemoveQueryStringParameter(filter_key);
 			history.pushState({}, '', query);
 		}
 
 		// filter products
-		wcapfFilterProducts();
+		dgcFilterProducts();
 	}
 
 	// handle the filter request
@@ -298,9 +298,9 @@ jQuery(document).ready(function($) {
 			enable_multiple_filter = element.attr('data-multiple-filter');
 
 		if (enable_multiple_filter == true) {
-			wcapfMakeParameters(filter_key, filter_val);
+			dgcMakeParameters(filter_key, filter_val);
 		} else {
-			wcapfSingleFilter(filter_key, filter_val);
+			dgcSingleFilter(filter_key, filter_val);
 		}
 
 	});
@@ -316,8 +316,8 @@ jQuery(document).ready(function($) {
 			query;
 
 		if (element.parent().hasClass('chosen')) {
-			query = wcapfRemoveQueryStringParameter(filter_key_min);
-			query = wcapfRemoveQueryStringParameter(filter_key_max, query);
+			query = dgcRemoveQueryStringParameter(filter_key_min);
+			query = dgcRemoveQueryStringParameter(filter_key_max, query);
 
 			if (query == '') {
 				query = window.location.href.split('?')[0];
@@ -325,12 +325,12 @@ jQuery(document).ready(function($) {
 
 			history.pushState({}, '', query);
 		} else {
-			query = wcapfUpdateQueryStringParameter(filter_key_min, filter_val_min, false);
-			query = wcapfUpdateQueryStringParameter(filter_key_max, filter_val_max, true, query);
+			query = dgcUpdateQueryStringParameter(filter_key_min, filter_val_min, false);
+			query = dgcUpdateQueryStringParameter(filter_key_max, filter_val_max, true, query);
 		}
 
 		// filter products
-		wcapfFilterProducts();
+		dgcFilterProducts();
 	});
 
 	// handle the pagination request
@@ -343,18 +343,18 @@ jQuery(document).ready(function($) {
 			history.pushState({}, '', location);
 
 			// filter products
-			wcapfFilterProducts();
+			dgcFilterProducts();
 		});
 	}
 
 	// history back and forward request handling
 	$(window).bind('popstate', function(event) {
 		// filter products
-		wcapfFilterProducts();
+		dgcFilterProducts();
     });
 
     // ordering
-    wcapfInitOrder = function() {
+    dgcInitOrder = function() {
     	if (typeof dgc_params.sorting_control !== 'undefined' && dgc_params.sorting_control.length && dgc_params.sorting_control == true) {
 	    	$('.dgc-before-products').find('.woocommerce-ordering').each(function(index) {
 	    		$(this).on('submit', function(event) {
@@ -368,17 +368,17 @@ jQuery(document).ready(function($) {
 	    				filter_key = 'orderby';
 
 	    			// change url
-	    			wcapfUpdateQueryStringParameter(filter_key, order);
+	    			dgcUpdateQueryStringParameter(filter_key, order);
 
 	    			// filter products
-	    			wcapfFilterProducts();
+	    			dgcFilterProducts();
 	    		});
 	    	});
     	}
     }
 
     // init ordering
-    wcapfInitOrder();
+    dgcInitOrder();
 
     // remove active filters
     $(document).on('click', '.dgc-active-filters a:not(.reset)', function(event) {
@@ -388,7 +388,7 @@ jQuery(document).ready(function($) {
     		filter_val = element.attr('data-value');
 
     	if (typeof filter_val === 'undefined') {
-	    	var query = wcapfRemoveQueryStringParameter(filter_key);
+	    	var query = dgcRemoveQueryStringParameter(filter_key);
 	    	history.pushState({}, '', query);
 
 	    	// price slider
@@ -407,9 +407,9 @@ jQuery(document).ready(function($) {
 	    	}
 
 	    	// filter products
-	    	wcapfFilterProducts();
+	    	dgcFilterProducts();
     	} else {
-    		wcapfMakeParameters(filter_key, filter_val);
+    		dgcMakeParameters(filter_key, filter_val);
     	}
     });
 
@@ -420,7 +420,7 @@ jQuery(document).ready(function($) {
     	history.pushState({}, '', location);
 
     	// filter products
-    	wcapfFilterProducts();
+    	dgcFilterProducts();
     });
 
 	// dispaly type dropdown
@@ -431,7 +431,7 @@ jQuery(document).ready(function($) {
 		return $state;
 	}
 
-	wcapfDropDownFilter = function() {
+	dgcDropDownFilter = function() {
 		if ($('.dgc-select2-single').length) {
 			$('.dgc-select2-single').select2({
 			    templateResult: formatState,
@@ -450,7 +450,7 @@ jQuery(document).ready(function($) {
 	}
 
 	// initialize dropdown filter
-	wcapfDropDownFilter();
+	dgcDropDownFilter();
 
 	$(document).on('change', '.dgc-select2', function(event) {
 		event.preventDefault();
@@ -458,19 +458,19 @@ jQuery(document).ready(function($) {
 			filter_val = $(this).val();
 
 		if (!filter_val) {
-			var query = wcapfRemoveQueryStringParameter(filter_key);
+			var query = dgcRemoveQueryStringParameter(filter_key);
 			history.pushState({}, '', query);
 		} else {
 			filter_val = filter_val.toString();
-			wcapfUpdateQueryStringParameter(filter_key, filter_val);
+			dgcUpdateQueryStringParameter(filter_key, filter_val);
 		}
 
 		// filter products
-		wcapfFilterProducts();
+		dgcFilterProducts();
 	});
 
-  wcapfRangeFilter = function() {
-    var params = wcapfGetUrlVars();
+  dgcRangeFilter = function() {
+    var params = dgcGetUrlVars();
 
     $('.dgc-range-terms').each(function () {
     	var initialValues = $(this).data('initial-values');
@@ -489,13 +489,13 @@ jQuery(document).ready(function($) {
         grid: true,
         onFinish: function (data) {
           if (data.from === 0 && data.to === values.length - 1) {
-            history.pushState({}, '', wcapfRemoveQueryStringParameter(filter_key));
+            history.pushState({}, '', dgcRemoveQueryStringParameter(filter_key));
           } else {
-            wcapfUpdateQueryStringParameter(filter_key, ids.slice(data.from, data.to + 1).join(','));
+            dgcUpdateQueryStringParameter(filter_key, ids.slice(data.from, data.to + 1).join(','));
           }
 
           // filter products
-          wcapfFilterProducts();
+          dgcFilterProducts();
         }
       };
 
@@ -511,5 +511,5 @@ jQuery(document).ready(function($) {
   }
 
   // initialize dropdown filter
-  wcapfRangeFilter();
+  dgcRangeFilter();
 });

@@ -4,31 +4,31 @@ jQuery(document).ready(function($) {
 	}
 
 	// price slider
-	wcapfInitPriceSlider = function() {
+	dgcInitPriceSlider = function() {
 		$('#dgc-noui-slider').ionRangeSlider({
 			type: "double",
 			min: 0,
 			max: 1000000,
 			step: 100,
 			onFinish: function (data) {
-				// var params = wcapfGetUrlVars();
+				// var params = dgcGetUrlVars();
 
 				// remove this parameter if set value is equal to max val
 				if (data.to === data.max) {
-					history.pushState({}, '', wcapfRemoveQueryStringParameter('max-price'));
+					history.pushState({}, '', dgcRemoveQueryStringParameter('max-price'));
 				} else {
-					wcapfUpdateQueryStringParameter('max-price', data.to);
+					dgcUpdateQueryStringParameter('max-price', data.to);
 				}
 
-        // remove this parameter if set value is equal to max val
+        		// remove this parameter if set value is equal to max val
 				if (data.from === data.min) {
-					history.pushState({}, '', wcapfRemoveQueryStringParameter('min-price'));
+					history.pushState({}, '', dgcRemoveQueryStringParameter('min-price'));
 				} else {
-					wcapfUpdateQueryStringParameter('min-price', data.from);
+					dgcUpdateQueryStringParameter('min-price', data.from);
 				}
 
 				// filter products without reinitializing price slider
-				wcapfFilterProducts();
+				dgcFilterProducts();
 			}
 		});
 	}
@@ -60,6 +60,6 @@ jQuery(document).ready(function($) {
 	// });
 
 	// initialize price slider
-	wcapfInitPriceSlider();
-	$(document).on('wcapf:widget_update', wcapfInitPriceSlider);
+	dgcInitPriceSlider();
+	$(document).on('wcapf:widget_update', dgcInitPriceSlider);
 });
