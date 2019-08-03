@@ -1,6 +1,6 @@
 <?php
 /**
- * DGC WooCommerce Plus by Category
+ * DGC Category Filter
  */
 if (!class_exists('DGC_Category_Filter_Widget')) {
 	class DGC_Category_Filter_Widget extends WP_Widget {
@@ -10,13 +10,13 @@ if (!class_exists('DGC_Category_Filter_Widget')) {
 		function __construct() {
 			parent::__construct(
 				'dgc-category-filter', // Base ID
-				__('DGC WooCommerce Plus by Category', 'textdomain'), // Name
+				__('DGC Category Filter', 'textdomain'), // Name
 				array('description' => __('Filter woocommerce products by category.', 'textdomain')) // Args
 			);
 		}
 
 		/**
-		 * Front-end display of widget.
+		 * Frontend display of widget.
 		 *
 		 * @see WP_Widget::widget()
 		 *
@@ -105,7 +105,7 @@ if (!class_exists('DGC_Category_Filter_Widget')) {
 		}
 
 		/**
-		 * Back-end widget form.
+		 * Backend widget form.
 		 *
 		 * @see WP_Widget::form()
 		 *

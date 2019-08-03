@@ -4,7 +4,7 @@
  * Description: A plugin to filter woocommerce products with AJAX request.
  * Version: 1.0.0
  * Author: dgc.network
- * Author URI: https://github.com/dgc.network
+ * Author URI: https://github.com/dgc-network
  * Text Domain: textdomain
  * Domain Path: /languages
  *
@@ -54,6 +54,20 @@ if (!class_exists('DGC_Woocommerce_Plus')) {
 		 * @var DGC_Woocommerce_Plus
 		 */
 		private static $_instance = null;
+
+		/**
+		 * Include required core files.
+		 */
+		public function includes()
+		{
+			require_once 'includes/functions.php';
+			require_once 'includes/hooks.php';
+			require_once 'widgets/widget-category-filter.php';
+			require_once 'widgets/widget-attribute-filter.php';
+			require_once 'widgets/widget-price-filter.php';
+			require_once 'widgets/widget-active-filter.php';
+			require_once 'widgets/widget-dimensions-filter.php';
+		}
 
 		/**
 		 * Initialize the plugin.
@@ -119,20 +133,6 @@ if (!class_exists('DGC_Woocommerce_Plus')) {
 			$this->define('DGC_PATH', $this->pluginPath());
 			$this->define('DGC_ASSETS_PATH', $this->assetsPath());
 			$this->define('DGC_CACHE_TIME', 60*60*12);
-		}
-
-		/**
-		 * Include required core files.
-		 */
-		public function includes()
-		{
-			require_once 'includes/functions.php';
-			require_once 'includes/hooks.php';
-			require_once 'widgets/widget-category-filter.php';
-			require_once 'widgets/widget-attribute-filter.php';
-			require_once 'widgets/widget-price-filter.php';
-			require_once 'widgets/widget-active-filter.php';
-			require_once 'widgets/widget-dimensions-filter.php';
 		}
 
 		/**

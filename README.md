@@ -1,10 +1,10 @@
 # DGC WooCommerce Plus
 
-WooCommerce Ajax Product Filter - adds advanced products filtering to your shop.
+DGC WooCommerce Plus - adds advanced products filtering to your shop.
 
 ## Description
 
-WooCommerce Ajax Product Filter - is a plugin that allows you to filter your products easily by categories, attributes, prices. Your can sort products, navigate to next and previous pages without reloading the page.
+DGC WooCommerce Plus - is a plugin that allows you to filter your products easily by categories, attributes, prices. Your can sort products, navigate to next and previous pages without reloading the page.
 
 Features:
 
@@ -52,36 +52,12 @@ Yes, you can. Go to settings page. You will see a text field to chage the overla
 ## Screenshots
 
 1. Plugin frontend
-2. DGC WooCommerce Plus by Attribute widget settings
-3. DGC WooCommerce Plus by Price display type list widget settings
+2. DGC Attribute Filter widget settings
+3. DGC Price Filter display type list widget settings
 4. Backend settings
 
 ## Changelog
 
-= 2.0.3 =
-
-* Fixed bug - 'dgc_get_term_objects' funtion was working incorrectly
-
-= 2.0.2 =
-
-* Added option to disable transients
-* Added option to clear transients
-
-= 2.0.1 =
-
-* Fixed filtering bugs on product taxonomy pages
-* Added more functionality to price filter display type list widget
-* Added option to enable/disable font awesome
-* Updated localization
-
-= 2.0 =
-
-* Fixed PHP version related issue
-* Fixed translation and localization issue
-* Fixed compatibility issue with WooCommerce Average Rating Filter
-* Added functionality to filter products by price list
-* Added functionality to clear all active filters with one click
-
-= 1.0 =
+= 1.0.0 =
 
 * Initial release

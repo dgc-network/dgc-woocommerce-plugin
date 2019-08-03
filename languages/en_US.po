@@ -144,7 +144,7 @@ msgstr ""
 
 #. Base ID
 #: widgets/widget-price-filter.php:13
-msgid "DGC WooCommerce Plus by Price"
+msgid "DGC Price Filter"
 msgstr ""
 
 #: widgets/widget-price-filter.php:14
@@ -202,7 +202,7 @@ msgstr ""
 
 #. Base ID
 #: widgets/widget-category-filter.php:13
-msgid "DGC WooCommerce Plus by Category"
+msgid "DGC Category Filter"
 msgstr ""
 
 #: widgets/widget-category-filter.php:14
@@ -246,7 +246,7 @@ msgstr ""
 
 #. Base ID
 #: widgets/widget-active-filter.php:13
-msgid "WC Ajax Active Filters"
+msgid "DGC Active Filters"
 msgstr ""
 
 #: widgets/widget-active-filter.php:14
@@ -275,7 +275,7 @@ msgstr ""
 
 #. Base ID
 #: widgets/widget-attribute-filter.php:13
-msgid "DGC WooCommerce Plus by Attribute"
+msgid "DGC Attribute Filter"
 msgstr ""
 
 #: widgets/widget-attribute-filter.php:14
@@ -295,9 +295,9 @@ msgid "A plugin to filter woocommerce products with AJAX request."
 msgstr ""
 
 #. Author of the plugin
-msgid "Shamim Al Mamun"
+msgid "dgc.network"
 msgstr ""
 
 #. Author URI of the plugin
-msgid "https://github.com/shamimmoeen"
+msgid "https://github.com/dgc-network"
 msgstr ""

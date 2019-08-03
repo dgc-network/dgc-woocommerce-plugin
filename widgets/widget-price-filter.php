@@ -1,6 +1,6 @@
 <?php
 /**
- * DGC WooCommerce Plus by Price
+ * DGC Price Filter
  */
 if (!class_exists('DGC_Price_Filter_Widget')) {
 	class DGC_Price_Filter_Widget extends WP_Widget {
@@ -10,13 +10,13 @@ if (!class_exists('DGC_Price_Filter_Widget')) {
 		function __construct() {
 			parent::__construct(
 				'dgc-price-filter', // Base ID
-				__('DGC WooCommerce Plus by Price', 'textdomain'), // Name
+				__('DGC Price Filter', 'textdomain'), // Name
 				array('description' => __('Filter woocommerce products by price.', 'textdomain')) // Args
 			);
 		}
 
 		/**
-		 * Front-end display of widget.
+		 * Frontend display of widget.
 		 *
 		 * @see WP_Widget::widget()
 		 *
@@ -28,7 +28,7 @@ if (!class_exists('DGC_Price_Filter_Widget')) {
 				return;
 			}
 
-			global $wcapf;
+			global $dgc;
 
 			// price range for filtered products
 			$filtered_price_range = $dgc->getPriceRange(true);
@@ -61,8 +61,8 @@ if (!class_exists('DGC_Price_Filter_Widget')) {
 			wp_enqueue_script('dgc-script');
 
 			if ($display_type === 'slider') {
-				wp_enqueue_script('dgc-ion-rangeslider-script');
 				wp_enqueue_script('dgc-price-filter-script');
+				wp_enqueue_script('dgc-ion-rangeslider-script');
 				wp_enqueue_style('dgc-ion-rangeslider-base-style');
 				wp_enqueue_style('dgc-ion-rangeslider-skin-style');
 
@@ -238,7 +238,7 @@ if (!class_exists('DGC_Price_Filter_Widget')) {
 		}
 
 		/**
-		 * Back-end widget form.
+		 * Backend widget form.
 		 *
 		 * @see WP_Widget::form()
 		 *

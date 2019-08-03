@@ -1,6 +1,6 @@
 <?php
 /**
- * DGC WooCommerce Plus by Dimensions
+ * DGC Dimensions Filter
  */
 if (!class_exists('DGC_Dimensions_Filter_Widget')) {
     class DGC_Dimensions_Filter_Widget extends WP_Widget {
@@ -10,13 +10,13 @@ if (!class_exists('DGC_Dimensions_Filter_Widget')) {
         function __construct() {
             parent::__construct(
                 'dgc-dimensions-filter', // Base ID
-                __('DGC WooCommerce Plus by Dimensions', 'textdomain'), // Name
+                __('DGC Dimensions Filter', 'textdomain'), // Name
                 array('description' => __('Filter woocommerce products by dimensions.', 'textdomain')) // Args
             );
         }
 
         /**
-         * Front-end display of widget.
+         * Frontend display of widget.
          *
          * @see WP_Widget::widget()
          *
@@ -28,12 +28,12 @@ if (!class_exists('DGC_Dimensions_Filter_Widget')) {
                 return;
             }
 
-            global $wcapf;
+            global $dgc;
 
-            // price range for filtered products
+            // dimension range for filtered products
             $filtered_range = $dgc->getMetaRange($instance['attr_name'], true);
 
-            // price range for all published products
+            // dimension range for all published products
             $unfiltered_range = $dgc->getMetaRange($instance['attr_name'], false);
 
             $html = '';
@@ -56,8 +56,8 @@ if (!class_exists('DGC_Dimensions_Filter_Widget')) {
             wp_enqueue_style('dgc-style');
             wp_enqueue_style('font-awesome');
             wp_enqueue_script('dgc-script');
-            wp_enqueue_script('dgc-ion-rangeslider-script');
             wp_enqueue_script('dgc-dimensions-filter-script');
+            wp_enqueue_script('dgc-ion-rangeslider-script');
             wp_enqueue_style('dgc-ion-rangeslider-base-style');
             wp_enqueue_style('dgc-ion-rangeslider-skin-style');
 
@@ -128,7 +128,7 @@ if (!class_exists('DGC_Dimensions_Filter_Widget')) {
         }
 
         /**
-         * Back-end widget form.
+         * Backend widget form.
          *
          * @see WP_Widget::form()
          *

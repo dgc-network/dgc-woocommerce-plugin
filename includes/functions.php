@@ -102,7 +102,7 @@ if (!function_exists('dgc_get_term_objects_direct')) {
  */
 if (!function_exists('dgc_get_term_objects')) {
 	function dgc_get_term_objects($term_id, $taxonomy) {
-		global $wcapf;
+		global $dgc;
 		$unfiltered_product_ids = $dgc->unfilteredProductIds();
 
 		$objects_in_term = dgc_get_term_objects_direct($term_id, $taxonomy);
@@ -154,7 +154,7 @@ if (!function_exists('dgc_clear_transients')) {
  */
 if (!function_exists('dgc_list_sub_terms')) {
 	function dgc_list_sub_terms($sub_term_args, $found) {
-		global $wcapf;
+		global $dgc;
 		$filtered_product_ids = $dgc->filteredProductIds();
 		$unfiltered_product_ids = $dgc->unfilteredProductIds();
 		$chosen_filters = $dgc->getChosenFilters();
@@ -253,7 +253,7 @@ if (!function_exists('dgc_list_sub_terms')) {
  */
 if (!function_exists('dgc_list_terms')) {
 	function dgc_list_terms($attr_args) {
-		global $wcapf;
+		global $dgc;
 		$filtered_product_ids = $dgc->filteredProductIds();
 		$unfiltered_product_ids = $dgc->unfilteredProductIds();
 		$chosen_filters = $dgc->getChosenFilters();
@@ -421,7 +421,7 @@ if (!function_exists('dgc_list_terms')) {
  */
 if (!function_exists('dgc_dropdown_sub_terms')) {
 	function dgc_dropdown_sub_terms($sub_term_args, $found, $depth) {
-		global $wcapf;
+		global $dgc;
 		$filtered_product_ids = $dgc->filteredProductIds();
 		$unfiltered_product_ids = $dgc->unfilteredProductIds();
 		$chosen_filters = $dgc->getChosenFilters();
@@ -512,7 +512,7 @@ if (!function_exists('dgc_dropdown_sub_terms')) {
  */
 if (!function_exists('dgc_dropdown_terms')) {
 	function dgc_dropdown_terms($attr_args) {
-		global $wcapf;
+		global $dgc;
 		$filtered_product_ids = $dgc->filteredProductIds();
 		$unfiltered_product_ids = $dgc->unfilteredProductIds();
 		$chosen_filters = $dgc->getChosenFilters();
@@ -671,7 +671,7 @@ if (!function_exists('dgc_dropdown_terms')) {
  */
 if (!function_exists('dgc_slider_terms')) {
 	function dgc_slider_terms($attr_args) {
-		global $wcapf;
+		global $dgc;
 		$filtered_product_ids = $dgc->filteredProductIds();
 		$unfiltered_product_ids = $dgc->unfilteredProductIds();
 		$chosen_filters = $dgc->getChosenFilters();

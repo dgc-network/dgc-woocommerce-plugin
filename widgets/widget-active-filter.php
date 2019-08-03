@@ -1,6 +1,6 @@
 <?php
 /**
- * WC Ajax Active Filters
+ * DGC Active Filters
  */
 if (!class_exists('DGC_Active_Filters_Widget')) {
 	class DGC_Active_Filters_Widget extends WP_Widget {
@@ -10,13 +10,13 @@ if (!class_exists('DGC_Active_Filters_Widget')) {
 		function __construct() {
 			parent::__construct(
 				'dgc-active-filters', // Base ID
-				__('WC Ajax Active Filters', 'textdomain'), // Name
+				__('DGC Active Filters', 'textdomain'), // Name
 				array('description' => __('Shows active filters so users can see and deactivate them.', 'textdomain')) // Args
 			);
 		}
 
 		/**
-		 * Front-end display of widget.
+		 * Frontend display of widget.
 		 *
 		 * @see WP_Widget::widget()
 		 *
@@ -33,7 +33,7 @@ if (!class_exists('DGC_Active_Filters_Widget')) {
 			wp_enqueue_style('font-awesome');
 			wp_enqueue_script('dgc-script');
 			
-			global $wcapf;
+			global $dgc;
 			$active_filters = $dgc->getChosenFilters();
 			$active_filters = $active_filters['active_filters'];
 			$found = false;
@@ -130,7 +130,7 @@ if (!class_exists('DGC_Active_Filters_Widget')) {
 		}
 
 		/**
-		 * Back-end widget form.
+		 * Backend widget form.
 		 *
 		 * @see WP_Widget::form()
 		 *
