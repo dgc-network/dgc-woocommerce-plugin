@@ -1,6 +1,6 @@
 <?php
 /**
- * DGC Dimensions Filter
+ * dgc Dimensions Filter
  */
 if (!class_exists('DGC_Dimensions_Filter_Widget')) {
     class DGC_Dimensions_Filter_Widget extends WP_Widget {
@@ -10,7 +10,7 @@ if (!class_exists('DGC_Dimensions_Filter_Widget')) {
         function __construct() {
             parent::__construct(
                 'dgc-dimensions-filter', // Base ID
-                __('DGC Dimensions Filter', 'textdomain'), // Name
+                __('dgc Dimensions Filter', 'textdomain'), // Name
                 array('description' => __('Filter woocommerce products by dimensions.', 'textdomain')) // Args
             );
         }

@@ -1,6 +1,6 @@
 <?php
 /**
- * DGC Attribute Filter
+ * dgc Attribute Filter
  */
 if (!class_exists('DGC_Attribute_Filter_Widget')) {
 	class DGC_Attribute_Filter_Widget extends WP_Widget {
@@ -10,7 +10,7 @@ if (!class_exists('DGC_Attribute_Filter_Widget')) {
 		function __construct() {
 			parent::__construct(
 				'dgc-attribute-filter', // Base ID
-				__('DGC Attribute Filter', 'textdomain'), // Name
+				__('dgc Attribute Filter', 'textdomain'), // Name
 				array('description' => __('Filter woocommerce products by attribute.', 'textdomain')) // Args
 			);
 		}

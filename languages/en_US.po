@@ -144,7 +144,7 @@ msgstr ""
 
 #. Base ID
 #: widgets/widget-price-filter.php:13
-msgid "DGC Price Filter"
+msgid "dgc Price Filter"
 msgstr ""
 
 #: widgets/widget-price-filter.php:14
@@ -202,7 +202,7 @@ msgstr ""
 
 #. Base ID
 #: widgets/widget-category-filter.php:13
-msgid "DGC Category Filter"
+msgid "dgc Category Filter"
 msgstr ""
 
 #: widgets/widget-category-filter.php:14
@@ -246,7 +246,7 @@ msgstr ""
 
 #. Base ID
 #: widgets/widget-active-filter.php:13
-msgid "DGC Active Filters"
+msgid "dgc Active Filters"
 msgstr ""
 
 #: widgets/widget-active-filter.php:14
@@ -275,7 +275,7 @@ msgstr ""
 
 #. Base ID
 #: widgets/widget-attribute-filter.php:13
-msgid "DGC Attribute Filter"
+msgid "dgc Attribute Filter"
 msgstr ""
 
 #: widgets/widget-attribute-filter.php:14

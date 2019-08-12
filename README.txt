@@ -59,8 +59,8 @@ Yes, you can. Go to settings page. You will see a text field to chage the overla
 == Screenshots ==
 
 1. Plugin frontend
-2. DGC Attribute Filter widget settings
-3. DGC Price Filter display type list widget settings
+2. dgc Attribute Filter widget settings
+3. dgc Price Filter display type list widget settings
 4. Backend settings
 
 == Changelog ==

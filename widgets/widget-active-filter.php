@@ -1,6 +1,6 @@
 <?php
 /**
- * DGC Active Filters
+ * dgc Active Filters
  */
 if (!class_exists('DGC_Active_Filters_Widget')) {
 	class DGC_Active_Filters_Widget extends WP_Widget {
@@ -10,7 +10,7 @@ if (!class_exists('DGC_Active_Filters_Widget')) {
 		function __construct() {
 			parent::__construct(
 				'dgc-active-filters', // Base ID
-				__('DGC Active Filters', 'textdomain'), // Name
+				__('dgc Active Filters', 'textdomain'), // Name
 				array('description' => __('Shows active filters so users can see and deactivate them.', 'textdomain')) // Args
 			);
 		}
