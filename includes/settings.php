@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
 }
 ?>
 <div class="wrap">
-	<h1><?php _e('DGC WooCommerce Plus', 'textdomain'); ?></h1>
+	<h1><?php _e('dgc WooCommerce Plus', 'textdomain'); ?></h1>
 	<form method="post" action="options.php">
 		<?php
 		settings_fields('dgc_settings');

@@ -1,4 +1,4 @@
-=== DGC WooCommerce Plus ===
+=== dgc WooCommerce Plus ===
 Contributors: dgc.network
 Tags: product filter, ajax product filter, ajax filter, woocommerce ajax product filter, woocommerce product filter, woocommerce ajax filter, woocommerce filter, products filter, ajax filter, advanced products filter, woocommerce layered nav, woocommerce layered navigation, ajax filtered nav, ajax filtered navigation, price filter, ajax price filter, ajax product search, woocommerce product sorting, woocommerce, wc ajax product filter, wc product filter, wc ajax filter, wc filter
 Requires at least: 4.0
@@ -7,11 +7,11 @@ Stable tag: 2.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-DGC WooCommerce Plus - adds advanced products filtering to your shop.
+dgc WooCommerce Plus - adds advanced products filtering to your shop.
 
 == Description ==
 
-DGC WooCommerce Plus - is a plugin that allows you to filter your products easily by categories, attributes, prices. Your can sort products, navigate to next and previous pages without reloading the page.
+dgc WooCommerce Plus - is a plugin that allows you to filter your products easily by categories, attributes, prices. Your can sort products, navigate to next and previous pages without reloading the page.
 
 Features:
 

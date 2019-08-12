@@ -1,10 +1,10 @@
-# DGC WooCommerce Plus
+# dgc WooCommerce Plus
 
-DGC WooCommerce Plus - adds advanced products filtering to your shop.
+dgc WooCommerce Plus - adds advanced products filtering to your shop.
 
 ## Description
 
-DGC WooCommerce Plus - is a plugin that allows you to filter your products easily by categories, attributes, prices. Your can sort products, navigate to next and previous pages without reloading the page.
+dgc WooCommerce Plus - is a plugin that allows you to filter your products easily by categories, attributes, prices. Your can sort products, navigate to next and previous pages without reloading the page.
 
 Features:
 

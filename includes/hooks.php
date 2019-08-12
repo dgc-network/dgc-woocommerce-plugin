@@ -1,6 +1,6 @@
 <?php
 /**
- * List of hooks in DGC WooCommerce Plus plugin.
+ * List of hooks in dgc WooCommerce Plus plugin.
  */
 
 // Exit if accessed directly

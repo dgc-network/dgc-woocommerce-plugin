@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: DGC WooCommerce Plus
+ * Plugin Name: dgc WooCommerce Plus
  * Description: A plugin to filter woocommerce products with AJAX request.
  * Version: 1.0.0
  * Author: dgc.network
@@ -199,7 +199,7 @@ if (!class_exists('DGC_Woocommerce_Plus')) {
 		 */
 		public function adminMenu()
 		{
-			add_options_page(__('DGC WooCommerce Plus', 'textdomain'), __('DGC WooCommerce Plus', 'textdomain'), 'manage_options', 'dgc-settings', array($this, 'settingsPage'));
+			add_options_page(__('dgc WooCommerce Plus', 'textdomain'), __('dgc WooCommerce Plus', 'textdomain'), 'manage_options', 'dgc-settings', array($this, 'settingsPage'));
 		}
 
 		/**
@@ -1000,7 +1000,7 @@ if (!class_exists('DGC_Woocommerce_Plus')) {
 		public function needWoocommerce()
 		{
 			echo '<div class="error">';
-			echo '<p>' . __('DGC WooCommerce Plus needs WooCommerce plguin to work.', 'textdomain') . '</p>';
+			echo '<p>' . __('dgc WooCommerce Plus needs WooCommerce plguin to work.', 'textdomain') . '</p>';
 			echo '</div>';
 		}
 
@@ -1010,7 +1010,7 @@ if (!class_exists('DGC_Woocommerce_Plus')) {
 		public function updateWoocommerce()
 		{
 			echo '<div class="error">';
-			echo '<p>' . __('To use DGC WooCommerce Plus update your WooCommerce plugin.', 'textdomain') . '</p>';
+			echo '<p>' . __('To use dgc WooCommerce Plus update your WooCommerce plugin.', 'textdomain') . '</p>';
 			echo '</div>';
 		}
 

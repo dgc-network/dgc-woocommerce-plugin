@@ -1,6 +1,6 @@
 <?php
 /**
- * Necessary functions in DGC WooCommerce Plus plugin.
+ * Necessary functions in dgc WooCommerce Plus plugin.
  */
 
 // Exit if accessed directly
